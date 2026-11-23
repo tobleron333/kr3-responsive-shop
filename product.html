@@ -1,115 +1,485 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="ru" data-bs-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Карточка товара учебного интернет-магазина.">
-  <title>Карточка товара — Учебный интернет-магазин</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Учебный интернет-магазин">
-  <meta property="og:description" content="Учебный frontend-проект интернет-магазина.">
-  <meta property="og:image" content="https://tobleron333.github.io/kr1-html-css-shop/images/preview.jpg">
+  <title>Бумага и дым — купить аромат | Тихая нота</title>
+  <meta name="description" content="«Бумага и дым» — древесный аромат мастерской «Тихая нота». Бергамот, ладан и кедр. Флаконы 50 и 100 мл, отзывы и характеристики.">
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="Бумага и дым — Тихая нота">
+  <meta property="og:description" content="Древесный аромат с бергамотом, ладаном и кедром. Стойкость 6–8 часов.">
+  <meta property="og:image" content="images/perfume-1.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="theme-color" content="#f7f2e9">
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('tn_theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        }
+      } catch (error) { /* localStorage недоступен */ }
+    })();
+  </script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
 </head>
+<body class="has-buybar">
 
-<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
 
   <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
-
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="index.html">Главная</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="catalog.html">Каталог</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="product.html">Карточка товара</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="order.html">Заявка</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="contacts.html">Контакты</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Основная навигация">
+      <div class="container navbar-container">
+        <a class="navbar-brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">ТН</span>
+          <span class="brand-text">
+            <span class="brand-name">Тихая нота</span>
+            <span class="brand-tagline">Парфюмерная мастерская</span>
+          </span>
+        </a>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="catalog.html">Каталог</a></li>
+            <li class="nav-item"><a class="nav-link" href="quiz.html">Подбор аромата</a></li>
+            <li class="nav-item"><a class="nav-link" href="certificates.html">Сертификаты</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="nav-actions">
+          <a class="nav-icon-link" href="account.html" aria-label="Личный кабинет" title="Личный кабинет">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 19c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5"></path></svg>
+          </a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false" title="Включить тёмную тему">
+            <span class="theme-toggle__icon theme-toggle__sun" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+            </span>
+            <span class="theme-toggle__icon theme-toggle__moon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"></path></svg>
+            </span>
+          </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon"><span class="menu-line"></span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main>
-    <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current"> / </span>
-      <a class="breadcrumbs__link" href="catalog.html">Каталог</a>
-      <span class="breadcrumbs__current"> / Карточка товара</span>
-    </nav>
+  <main id="main">
 
-    <article class="product-detail">
-
-      <div class="product-detail__media">
-        <img class="product-detail__image" src="images/product-1.jpg" alt="Беспроводные наушники" width="600" height="450">
+    <div class="page-top">
+      <div class="container">
+        <nav aria-label="Хлебные крошки">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+            <li class="breadcrumb-item"><a href="catalog.html">Каталог</a></li>
+            <li class="breadcrumb-item active" aria-current="page" id="breadcrumbProduct">Бумага и дым</li>
+          </ol>
+        </nav>
       </div>
+    </div>
 
-      <div class="product-detail__info">
-        <h1 class="product-detail__title">Беспроводные наушники</h1>
-        <p class="product-detail__description">
-          Полноразмерные беспроводные наушники с активным шумоподавлением.
-          Поддерживают Bluetooth 5.3, работают до 30 часов без подзарядки.
-          В комплекте — чехол и кабель USB-C.
-        </p>
-        <p class="product-detail__price">Цена: 4990 руб.</p>
+    <section class="section">
+      <div class="container">
+        <div class="product-layout">
 
-        <a class="button button--primary" href="order.html">Оформить заявку</a>
+          <div class="product-media" data-reveal>
+            <img id="productImage" src="images/perfume-1.jpg" alt="Аромат «Бумага и дым»" width="720" height="900">
+            <span class="badge bg-warning product-card__badge" id="productBadge">Хит</span>
+          </div>
 
-        <table class="product-table">
-          <caption>Характеристики товара</caption>
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Значение</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Категория</td>
-              <td>Аудиотехника</td>
-            </tr>
-            <tr>
-              <td>Тип подключения</td>
-              <td>Bluetooth 5.3</td>
-            </tr>
-            <tr>
-              <td>Время работы</td>
-              <td>до 30 часов</td>
-            </tr>
-            <tr>
-              <td>Шумоподавление</td>
-              <td>Активное (ANC)</td>
-            </tr>
-            <tr>
-              <td>Гарантия</td>
-              <td>12 месяцев</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="product-info" data-reveal>
+            <span class="eyebrow" id="productFamily">Древесные · Средняя · Осень — зима</span>
+            <h1 class="product-title" id="productTitle">Бумага и дым</h1>
+            <p class="product-subtitle" id="productSubtitle">Тихий кабинет, стопка писем и тлеющая сигара где-то в соседней комнате.</p>
+
+            <div class="product-rating" id="productRating">
+              <span class="rating">
+                <span class="stars" aria-hidden="true"><span class="stars__fill" style="width:88%"></span></span>
+                <span class="rating__count">4,5 · 2 отзыва</span>
+              </span>
+              <a class="ms-3 small text-uppercase" href="#reviews" style="letter-spacing:.1em;font-size:.66rem;">Читать отзывы</a>
+            </div>
+
+            <p class="product-price"><span id="productPrice">8 900 ₽</span><small id="productVolumeLabel">/ 50 мл</small></p>
+
+            <p class="product-description" id="productDescription">
+              Аромат для тех, кто любит тишину с характером. Сухая бумага и ладан звучат почти архитектурно,
+              а кедр и ветивер держат композицию у самой кожи.
+            </p>
+
+            <div class="volume-switch" id="volumeSwitch">
+              <button class="volume-option is-active" type="button" data-volume="50" aria-pressed="true">50 мл — 8 900 ₽</button>
+              <button class="volume-option" type="button" data-volume="100" aria-pressed="false">100 мл — 11 500 ₽</button>
+            </div>
+
+            <div class="product-actions">
+              <button class="btn btn-primary btn-lg" id="productOrderBtn" type="button" data-order-perfume="paper-smoke" data-volume="50" data-price="8900">Купить флакон</button>
+              <a class="btn btn-outline-primary btn-lg" id="productBookBtn" href="order.html?program=signature">Собрать свой аромат</a>
+            </div>
+
+            <ul class="product-meta" id="productMeta">
+              <li><span>Концентрация</span><span>Eau de parfum</span></li>
+              <li><span>Стойкость</span><span>6–8 часов</span></li>
+              <li><span>Шлейф</span><span>Умеренный</span></li>
+              <li><span>Год выпуска</span><span>2024</span></li>
+            </ul>
+
+            <div class="warning-note" id="productWarningBox">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5M12 17.2v.1"/></svg>
+              <span id="productWarning">Содержит натуральные эфирные масла. Перед первым использованием нанесите на внутренний сгиб локтя и подождите 30 минут.</span>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-    </article>
+    <section class="section section--soft" aria-labelledby="notesTitle">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Композиция</span>
+            <h2 class="section-title" id="notesTitle">Пирамида нот</h2>
+          </div>
+          <p class="section-lead mb-0">Аромат раскрывается в три этапа: от первого вдоха до базы, которая остаётся на коже дольше всего.</p>
+        </div>
+
+        <div class="notes-grid">
+          <div class="note-card" data-reveal>
+            <span class="note-card__index">I</span>
+            <h3 class="note-card__title">Верхние ноты</h3>
+            <p class="note-card__value" id="noteTop">Бергамот, чёрный перец</p>
+          </div>
+          <div class="note-card" data-reveal>
+            <span class="note-card__index">II</span>
+            <h3 class="note-card__title">Сердце</h3>
+            <p class="note-card__value" id="noteHeart">Ладан, бумага</p>
+          </div>
+          <div class="note-card" data-reveal>
+            <span class="note-card__index">III</span>
+            <h3 class="note-card__title">База</h3>
+            <p class="note-card__value" id="noteBase">Кедр, ветивер</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="storyTitle">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-6">
+            <span class="eyebrow">История</span>
+            <h2 class="section-title" id="storyTitle">Как он появился</h2>
+            <p class="lead-text" id="productStory">
+              Мы собирали его как кабинет: старые книги, деревянный стол, чернила и прохлада за окном.
+              Это аромат сосредоточенности, а не первого впечатления.
+            </p>
+            <p class="text-muted">Наносите на запястья и шею с расстояния 15–20 см. Не растирайте: так композиция раскрывается постепенно и живёт дольше.</p>
+          </div>
+          <div class="col-12 col-lg-6">
+            <table class="specs">
+              <caption class="visually-hidden">Характеристики аромата</caption>
+              <tbody id="specsBody">
+                <tr><th scope="row">Семейство</th><td data-label="Семейство">Древесные</td></tr>
+                <tr><th scope="row">Интенсивность</th><td data-label="Интенсивность">Средняя</td></tr>
+                <tr><th scope="row">Сезон</th><td data-label="Сезон">Осень — зима</td></tr>
+                <tr><th scope="row">Концентрация</th><td data-label="Концентрация">Eau de parfum</td></tr>
+                <tr><th scope="row">Стойкость</th><td data-label="Стойкость">6–8 часов</td></tr>
+                <tr><th scope="row">Объём</th><td data-label="Объём">50 / 100 мл</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" aria-labelledby="productFaqTitle">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-4">
+            <span class="eyebrow">Перед покупкой</span>
+            <h2 class="section-title" id="productFaqTitle">Частые вопросы</h2>
+            <p class="section-lead">Не нашли ответ? Напишите на <a href="mailto:hello@quietnote.ru">hello@quietnote.ru</a> или загляните в бутик.</p>
+          </div>
+          <div class="col-12 col-lg-8">
+            <div class="accordion" id="productFaq">
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq1" aria-expanded="true" aria-controls="pfaq1">Можно ли сначала попробовать?</button>
+                </h3>
+                <div id="pfaq1" class="accordion-collapse collapse show" data-bs-parent="#productFaq">
+                  <div class="accordion-body">Да. В бутиках бесплатно наливают пробники на кожу, а набор из пяти ароматов по 2 мл стоит 1 200 ₽. Стоимость набора засчитывается в покупку полного флакона в течение месяца.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq2" aria-expanded="false" aria-controls="pfaq2">Почему у аромата несколько объёмов?</button>
+                </h3>
+                <div id="pfaq2" class="accordion-collapse collapse" data-bs-parent="#productFaq">
+                  <div class="accordion-body">Флакон 50 мл удобно носить с собой, 100 мл выгоднее по цене за миллилитр. Формула одинаковая — отличается только объём и стоимость.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq3" aria-expanded="false" aria-controls="pfaq3">Есть ли аллергены в составе?</button>
+                </h3>
+                <div id="pfaq3" class="accordion-collapse collapse" data-bs-parent="#productFaq">
+                  <div class="accordion-body">В каждом аромате есть натуральные эфирные масла — они могут вызывать индивидуальную реакцию. Полный состав указан на флаконе, а предупреждение — в карточке аромата. При чувствительной коже сначала сделайте тест.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq4" aria-expanded="false" aria-controls="pfaq4">Как хранить флакон?</button>
+                </h3>
+                <div id="pfaq4" class="accordion-collapse collapse" data-bs-parent="#productFaq">
+                  <div class="accordion-body">Вдали от прямого солнца и тепла, желательно в оригинальной коробке. Так композиция останется стабильной 3–5 лет после вскрытия.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="section" id="reviews" aria-labelledby="reviewsTitle">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Отзывы</span>
+            <h2 class="section-title" id="reviewsTitle">Что говорят гости</h2>
+          </div>
+          <p class="section-lead mb-0">Отзывы оставляют покупатели после покупки или мастер-класса. Новые отзывы сохраняются в вашем браузере.</p>
+        </div>
+
+        <div class="reviews-layout">
+          <div class="reviews-summary" data-reveal>
+            <div class="reviews-summary__score">
+              <strong id="reviewsAverage">4,5</strong>
+              <span>из 5</span>
+            </div>
+            <div id="reviewsStars"><span class="stars" aria-hidden="true"><span class="stars__fill" style="width:90%"></span></span></div>
+            <p class="reviews-summary__count" id="reviewsCount">2 отзыва</p>
+            <ul class="rating-bars" id="ratingBars">
+              <li class="rating-bar"><span>5 звёзд</span><span class="rating-bar__track"><span class="rating-bar__fill" style="width:50%"></span></span><span>1</span></li>
+              <li class="rating-bar"><span>4 звезды</span><span class="rating-bar__track"><span class="rating-bar__fill" style="width:50%"></span></span><span>1</span></li>
+              <li class="rating-bar"><span>3 звезды</span><span class="rating-bar__track"></span><span>0</span></li>
+              <li class="rating-bar"><span>2 звезды</span><span class="rating-bar__track"></span><span>0</span></li>
+              <li class="rating-bar"><span>1 звезда</span><span class="rating-bar__track"></span><span>0</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="reviews-list-head">
+              <h3>Отзывы покупателей</h3>
+              <div>
+                <label class="visually-hidden" for="reviewSort">Сортировка отзывов</label>
+                <select class="form-select" id="reviewSort">
+                  <option value="new">Сначала новые</option>
+                  <option value="high">Сначала высокие</option>
+                  <option value="low">Сначала низкие</option>
+                </select>
+              </div>
+            </div>
+            <div id="reviewsList"></div>
+            <button class="btn btn-outline-primary reviews-more" id="reviewsMore" type="button">Показать ещё</button>
+          </div>
+        </div>
+
+        <form class="review-form-card" id="reviewForm" novalidate>
+          <h3>Оставить отзыв</h3>
+          <p>Расскажите, как аромат раскрылся на вашей коже. Это поможет другим выбрать.</p>
+          <div class="success-message" id="reviewSuccess"></div>
+
+          <div class="mb-3">
+            <span class="form-label d-block">Оценка</span>
+            <div class="star-input" role="radiogroup" aria-label="Оценка аромата">
+              <input type="radio" id="star5" name="review-rating" value="5" checked>
+              <label for="star5" aria-label="5 звёзд">★</label>
+              <input type="radio" id="star4" name="review-rating" value="4">
+              <label for="star4" aria-label="4 звезды">★</label>
+              <input type="radio" id="star3" name="review-rating" value="3">
+              <label for="star3" aria-label="3 звезды">★</label>
+              <input type="radio" id="star2" name="review-rating" value="2">
+              <label for="star2" aria-label="2 звезды">★</label>
+              <input type="radio" id="star1" name="review-rating" value="1">
+              <label for="star1" aria-label="1 звезда">★</label>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="reviewName">Имя</label>
+              <input class="form-control" id="reviewName" name="name" type="text" autocomplete="name" placeholder="Как вас подписать" required>
+              <div class="field-error" data-error-for="reviewName">Укажите имя — минимум 2 символа.</div>
+            </div>
+          </div>
+
+          <div class="mt-3 mb-3">
+            <label class="form-label" for="reviewText">Отзыв</label>
+            <textarea class="form-control" id="reviewText" name="text" rows="4" placeholder="Например: аромат раскрылся через 20 минут, держится весь день..." required></textarea>
+            <div class="field-error" data-error-for="reviewText">Расскажите чуть подробнее — минимум 20 символов.</div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Опубликовать отзыв</button>
+          <p class="summary-note">Отзыв сохранится в этом браузере и сразу появится в списке.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Похожие ароматы -->
+    <section class="section section--soft" aria-labelledby="similarTitle">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Рядом</span>
+            <h2 class="section-title" id="similarTitle">Похожие ароматы</h2>
+          </div>
+          <a class="section-link" href="catalog.html">Весь каталог
+            <svg class="btn-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 8h13M10 3l5 5-5 5"/></svg>
+          </a>
+        </div>
+        <div class="products-grid" id="similarGrid"></div>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
-    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="navbar-brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">ТН</span>
+            <span class="brand-text">
+              <span class="brand-name">Тихая нота</span>
+              <span class="brand-tagline">Парфюмерная мастерская</span>
+            </span>
+          </a>
+          <p>Авторские ароматы, мастер-классы и подарочные сертификаты. Москва, с 2022 года.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11l5 2 2 6 3-4 5 3 3-14Z"/><path d="m8 13 4 2"/></svg></a>
+            <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8c1 5 4 8 8 8h2v-4c2 2 3 3 5 4h3c-2-1-5-4-5-4s2-2 4-4h-3c-1 1-3 3-4 4V8H3Z"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.1-4.3A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.8 8.4c.3-.6.7-.6 1-.6h.4c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .6.5.9 1.2 1.6 2.1 2 .3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .3 0 1.1-.5 1.7-.5.6-1.3 1-2.1 1-1.7 0-4.1-1.4-5.5-3.6-.9-1.4-1.2-2.6-1.1-3.4 0-.4.1-.8.3-1.1Z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h2 class="footer-title">Разделы</h2>
+          <ul class="footer-nav">
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="quiz.html">Подбор аромата</a></li>
+            <li><a href="certificates.html">Сертификаты</a></li>
+            <li><a href="about.html">О мастерской</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Мастерская</h2>
+          <ul class="footer-nav">
+            <li><a href="order.html">Мастер-классы</a></li>
+            <li><a href="account.html">Личный кабинет</a></li>
+            <li><a href="certificates.html#faq">О сертификатах</a></li>
+            <li><a href="index.html#faqTitle">Доставка и оплата</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Контакты</h2>
+          <ul class="footer-contact">
+            <li><a href="tel:+74951204545">📞 +7 (495) 120-45-45</a><span>ежедневно, 11:00–22:00</span></li>
+            <li><a href="mailto:hello@quietnote.ru">📬 hello@quietnote.ru</a><span>ответим в течение дня</span></li>
+            <li>📍 Москва, ул. Покровка, 17<span>флагманский бутик</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Тихая нота. Все права защищены.</span>
+        <span>Москва · ежедневно 11:00–22:00</span>
+      </div>
+    </div>
   </footer>
 
-  <a href="#top" class="scroll-top" id="scroll-top" aria-label="Наверх">↑</a>
-  
-</body>
+  <nav class="mobile-nav" aria-label="Мобильная навигация">
+    <a href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z"/><path d="M9.5 20v-5h5v5"/></svg>
+      <span>Главная</span>
+    </a>
+    <a href="catalog.html" class="active" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7"/><rect x="13.5" y="3.5" width="7" height="7"/><rect x="3.5" y="13.5" width="7" height="7"/><rect x="13.5" y="13.5" width="7" height="7"/></svg>
+      <span>Каталог</span>
+    </a>
+    <a href="quiz.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.2 7.2l2.1 2.1M17.7 14.7l2.1 2.1M3 12h3M18 12h3M4.2 16.8l2.1-2.1M17.7 9.3l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>Подбор</span>
+    </a>
+    <a href="account.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5"/></svg>
+      <span>Кабинет</span>
+    </a>
+  </nav>
 
+  <div class="sticky-buybar" aria-label="Быстрая покупка">
+    <div class="sticky-buybar__price">
+      <strong id="stickyPrice">8 900 ₽</strong>
+      <span id="stickyVolume">50 мл</span>
+    </div>
+    <button class="btn btn-primary" type="button" id="stickyOrderBtn" data-order-perfume="paper-smoke" data-volume="50" data-price="8900">Купить</button>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" type="button" aria-label="Наверх">
+    <span class="scroll-top__icon" aria-hidden="true">🌸</span>
+  </button>
+
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="orderModalTitle">Оформление заказа</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <div id="orderProduct" class="order-product"></div>
+          <div class="success-message" id="orderSuccess">
+            Заказ <strong id="orderNumber"></strong> принят. Мы свяжемся с вами, чтобы подтвердить объём и доставку.
+            Следить за статусом можно в <a href="account.html">личном кабинете</a>.
+          </div>
+          <form id="orderForm" novalidate>
+            <input type="hidden" id="orderPerfumeId" name="perfume">
+            <input type="hidden" id="orderVolume" name="volume">
+            <input type="hidden" id="orderPrice" name="price">
+            <div class="mb-3">
+              <label class="form-label" for="orderName">Имя</label>
+              <input class="form-control" id="orderName" name="name" type="text" autocomplete="given-name" placeholder="Как к вам обращаться" required>
+              <div class="field-error" data-error-for="orderName"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="orderPhone">Телефон</label>
+              <input class="form-control" id="orderPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
+              <div class="field-error" data-error-for="orderPhone"></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label" for="orderComment">Комментарий</label>
+              <textarea class="form-control" id="orderComment" name="comment" rows="3" placeholder="Например, нужен пробник перед покупкой"></textarea>
+            </div>
+            <button class="btn btn-primary w-100" id="orderSubmit" type="submit">Подтвердить заказ</button>
+            <p class="summary-note">Оплата при получении или в бутике. Отправим подтверждение по телефону.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/product.js"></script>
+  <script src="js/reviews.js"></script>
+  <script src="js/custom.js"></script>
+</body>
 </html>

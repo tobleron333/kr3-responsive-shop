@@ -1,176 +1,518 @@
 <!DOCTYPE html>
-
-<html lang = "ru">
-
+<html lang="ru" data-bs-theme="light">
 <head>
-
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Каталог товаров учебного интернет-магазина.">
-  <title>Каталог товаров — Учебный интернет-магазин</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
+  <title>Каталог ароматов — Тихая нота</title>
+  <meta name="description" content="Девять авторских ароматов «Тихой ноты»: древесные, цветочные, цитрусовые, гурманские и шипровые. Фильтры по семейству, интенсивности, сезону и цене.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Учебный интернет-магазин">
-  <meta property="og:description" content="Учебный frontend-проект интернет-магазина.">
-  <meta property="og:image" content="https://tobleron333.github.io/kr1-html-css-shop/images/preview.jpg">
-
+  <meta property="og:title" content="Каталог ароматов — Тихая нота">
+  <meta property="og:description" content="Девять авторских ароматов с фильтрами по семейству, интенсивности, сезону и цене.">
+  <meta property="og:image" content="images/preview.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="theme-color" content="#f7f2e9">
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('tn_theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        }
+      } catch (error) { /* localStorage недоступен */ }
+    })();
+  </script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
 </head>
-
 <body>
 
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="index.html">Главная</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link site-nav__link--active" href="catalog.html">Каталог</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="product.html">Карточка товара</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="order.html">Заявка</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="contacts.html">Контакты</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="index.html#popular">Популярные товары</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Основная навигация">
+      <div class="container navbar-container">
+        <a class="navbar-brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">ТН</span>
+          <span class="brand-text">
+            <span class="brand-name">Тихая нота</span>
+            <span class="brand-tagline">Парфюмерная мастерская</span>
+          </span>
+        </a>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="catalog.html">Каталог</a></li>
+            <li class="nav-item"><a class="nav-link" href="quiz.html">Подбор аромата</a></li>
+            <li class="nav-item"><a class="nav-link" href="certificates.html">Сертификаты</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="nav-actions">
+          <a class="nav-icon-link" href="account.html" aria-label="Личный кабинет" title="Личный кабинет">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 19c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5"></path></svg>
+          </a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false" title="Включить тёмную тему">
+            <span class="theme-toggle__icon theme-toggle__sun" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+            </span>
+            <span class="theme-toggle__icon theme-toggle__moon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"></path></svg>
+            </span>
+          </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon"><span class="menu-line"></span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main>
-    <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current">Каталог</span>
-    </nav>
+  <main id="main">
+
+    <div class="page-top">
+      <div class="container">
+        <nav aria-label="Хлебные крошки">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Каталог</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 
     <section class="section">
-      <h1>Каталог товаров</h1>
-      <p>
-        На этой странице представлен учебный каталог товаров.
-        В дальнейшем здесь будут добавлены фильтры, сортировка и более
-        подробные карточки.
-      </p>
-    </section>
+      <div class="container">
+        <div class="row align-items-end g-3 mb-4 mb-lg-5">
+          <div class="col-12 col-lg-7">
+            <span class="eyebrow">Коллекция</span>
+            <h1 class="section-title">Девять ароматов —<br>и ни одного лишнего</h1>
+          </div>
+          <div class="col-12 col-lg-5">
+            <p class="section-lead mb-0">Каждый аромат можно послушать в бутике, заказать флакон 50 или 100 мл или забрать набор пробников.</p>
+          </div>
+        </div>
 
-    <section class="catalog-layout">
+        <div class="alert alert-info mb-4" role="note">
+          <strong>Совет:</strong> если сомневаетесь, начните с набора из пяти пробников — его стоимость засчитывается в покупку полного флакона.
+        </div>
 
-    <aside class="catalog-filters">
-      <h2>Фильтры</h2>
+        <div class="catalog-layout row g-4 g-lg-5">
 
-      <form class="filters-form" action="#" method="get">
-        <fieldset>
-          <legend>Категория</legend>
+          <!-- Фильтры: на десктопе колонка, на мобильном — offcanvas -->
+          <div class="col-12 col-lg-3">
+            <aside class="filters offcanvas-lg offcanvas-start" tabindex="-1" id="catalogFilters" aria-labelledby="filtersTitle">
+              <div class="offcanvas-header">
+                <h2 class="filters__title" id="filtersTitle">Фильтры</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#catalogFilters" aria-label="Закрыть фильтры"></button>
+              </div>
+              <div class="offcanvas-body">
+                <div class="filters__group">
+                  <label class="form-label" for="filterFamily">Семейство</label>
+                  <select class="form-select" id="filterFamily">
+                    <option value="all">Все семейства</option>
+                    <option value="woody">Древесные</option>
+                    <option value="floral">Цветочные</option>
+                    <option value="citrus">Цитрусовые</option>
+                    <option value="gourmand">Гурманские</option>
+                    <option value="chypre">Шипровые</option>
+                  </select>
+                </div>
 
-          <label>
-            <input type="checkbox" name="category" value="all">
-            Все товары
-          </label>
+                <div class="filters__group">
+                  <label class="form-label" for="filterIntensity">Интенсивность</label>
+                  <select class="form-select" id="filterIntensity">
+                    <option value="all">Любая</option>
+                    <option value="light">Лёгкая</option>
+                    <option value="medium">Средняя</option>
+                    <option value="rich">Насыщенная</option>
+                  </select>
+                </div>
 
-          <label>
-            <input type="checkbox" name="category" value="popular">
-            Популярные
-          </label>
+                <div class="filters__group">
+                  <label class="form-label" for="filterSeason">Сезон</label>
+                  <select class="form-select" id="filterSeason">
+                    <option value="all">Круглый год</option>
+                    <option value="spring">Весна</option>
+                    <option value="summer">Лето</option>
+                    <option value="autumn">Осень</option>
+                    <option value="winter">Зима</option>
+                  </select>
+                </div>
 
-          <label>
-            <input type="checkbox" name="category" value="new">
-            Новинки
-          </label>
-        </fieldset>
+                <div class="filters__group">
+                  <label class="form-label" for="filterPriceMin">Цена, ₽</label>
+                  <div class="filters__price">
+                    <input class="form-control" id="filterPriceMin" type="number" min="0" max="15000" step="100" value="0" inputmode="numeric" aria-label="Минимальная цена">
+                    <span>—</span>
+                    <input class="form-control" id="filterPriceMax" type="number" min="0" max="15000" step="100" value="15000" inputmode="numeric" aria-label="Максимальная цена">
+                  </div>
+                  <p class="filters__hint">Указана цена флакона 50 мл.</p>
+                </div>
 
-        <fieldset>
-          <legend>Цена</legend>
+                <div class="filters__actions">
+                  <button class="btn btn-primary d-lg-none" id="filtersApply" type="button">Показать ароматы</button>
+                  <button class="btn btn-secondary" id="filterReset" type="button">Сбросить фильтры</button>
+                </div>
+              </div>
+            </aside>
+          </div>
 
-          <label for="price-from">От</label>
-          <input id="price-from" name="price-from" type="number" min="0" placeholder="0">
+          <!-- Каталог -->
+          <div class="col-12 col-lg-9">
 
-          <label for="price-to">До</label>
-          <input id="price-to" name="price-to" type="number" min="0" placeholder="5000">
-        </fieldset>
+            <div class="catalog-toolbar">
+              <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-outline-primary filters-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#catalogFilters" aria-controls="catalogFilters">
+                  <svg class="btn-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M4 8h8M6 12h4"/></svg>
+                  Фильтры
+                  <span class="filters-toggle__count" id="filtersCount" hidden>0</span>
+                </button>
+                <span class="catalog-toolbar__count" id="catalogCount" aria-live="polite"><strong>9</strong> из 9 ароматов</span>
+              </div>
+              <div class="catalog-toolbar__right">
+                <label class="visually-hidden" for="catalogSort">Сортировка</label>
+                <select class="form-select" id="catalogSort">
+                  <option value="default">По умолчанию</option>
+                  <option value="price-asc">Сначала дешевле</option>
+                  <option value="price-desc">Сначала дороже</option>
+                  <option value="title">По названию</option>
+                </select>
+              </div>
+            </div>
 
-        <button class="button button--primary" type="submit">Применить</button>
-      </form>
-    </aside>
+            <div class="filter-chips" id="filterChips" hidden></div>
 
-    <section class="catalog-products">
-      <h2>Список товаров</h2>
+            <div class="products-grid products-grid--catalog" id="catalogGrid">
 
-      <div class="products-grid">
+              <article class="product-card" data-perfume data-family="woody" data-intensity="medium" data-seasons="autumn winter" data-price="8900" data-title="Бумага и дым">
+                <a class="product-card__media" href="product.html?id=paper-smoke" aria-label="Аромат «Бумага и дым»">
+                  <img src="images/perfume-1.jpg" alt="Аромат «Бумага и дым»" width="400" height="500" loading="lazy">
+                  <span class="badge bg-warning product-card__badge">Хит</span>
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Древесные · средняя</p>
+                  <h2 class="product-card__title"><a href="product.html?id=paper-smoke">Бумага и дым</a></h2>
+                  <p class="product-card__notes">Бергамот · ладан · кедр</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 8 900 ₽</span>
+                    <span class="rating" data-rating-for="paper-smoke"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=paper-smoke">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="paper-smoke" data-volume="50" data-price="8900">Заказать</button>
+                  </div>
+                </div>
+              </article>
 
-        <article class="product-card">
-          <img class="product-card__image" src="images/product-1.jpg" alt="Беспроводные наушники" width="400" height="300" loading="lazy">
-          <h3 class="product-card__title">Беспроводные наушники</h3>
-          <p class="product-card__description">Bluetooth 5.3, активное шумоподавление, до 30 часов работы.</p>
-          <p class="product-card__price">Цена: 4990 руб.</p>
-          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
-        </article>
+              <article class="product-card" data-perfume data-family="chypre" data-intensity="light" data-seasons="spring summer" data-price="8400" data-title="Инжир в полдень">
+                <a class="product-card__media" href="product.html?id=fig-noon" aria-label="Аромат «Инжир в полдень»">
+                  <img src="images/perfume-2.jpg" alt="Аромат «Инжир в полдень»" width="400" height="500" loading="lazy">
+                  <span class="badge bg-success product-card__badge">Новинка</span>
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Шипровые · лёгкая</p>
+                  <h2 class="product-card__title"><a href="product.html?id=fig-noon">Инжир в полдень</a></h2>
+                  <p class="product-card__notes">Инжир · ирис · мох</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 8 400 ₽</span>
+                    <span class="rating" data-rating-for="fig-noon"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=fig-noon">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="fig-noon" data-volume="50" data-price="8400">Заказать</button>
+                  </div>
+                </div>
+              </article>
 
-        <article class="product-card">
-          <img class="product-card__image" src="images/product-2.jpg" alt="Умные часы" width="400" height="300" loading="lazy">
-          <h3 class="product-card__title">Умные часы</h3>
-          <p class="product-card__description">AMOLED-экран, пульсометр, защита IP68.</p>
-          <p class="product-card__price">Цена: 8990 руб.</p>
-          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
-        </article>
+              <article class="product-card" data-perfume data-family="floral" data-intensity="rich" data-seasons="summer autumn" data-price="12900" data-title="Бархатный август">
+                <a class="product-card__media" href="product.html?id=velvet-august" aria-label="Аромат «Бархатный август»">
+                  <img src="images/perfume-3.jpg" alt="Аромат «Бархатный август»" width="400" height="500" loading="lazy">
+                  <span class="badge bg-danger product-card__badge">Лимитированная серия</span>
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Цветочные · насыщенная</p>
+                  <h2 class="product-card__title"><a href="product.html?id=velvet-august">Бархатный август</a></h2>
+                  <p class="product-card__notes">Роза · ирис · пачули</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 12 900 ₽</span>
+                    <span class="rating" data-rating-for="velvet-august"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=velvet-august">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="velvet-august" data-volume="50" data-price="12900">Заказать</button>
+                  </div>
+                </div>
+              </article>
 
-        <article class="product-card">
-          <img class="product-card__image" src="images/product-3.jpg" alt="Портативная колонка" width="400" height="300" loading="lazy">
-          <h3 class="product-card__title">Портативная колонка</h3>
-          <p class="product-card__description">20 Вт, IPX7, до 12 часов работы.</p>
-          <p class="product-card__price">Цена: 3490 руб.</p>
-          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
-        </article>
+              <article class="product-card" data-perfume data-family="chypre" data-intensity="medium" data-seasons="spring autumn" data-price="10400" data-title="Соль и кожа">
+                <a class="product-card__media" href="product.html?id=salt-leather" aria-label="Аромат «Соль и кожа»">
+                  <img src="images/perfume-4.jpg" alt="Аромат «Соль и кожа»" width="400" height="500" loading="lazy">
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Шипровые · средняя</p>
+                  <h2 class="product-card__title"><a href="product.html?id=salt-leather">Соль и кожа</a></h2>
+                  <p class="product-card__notes">Соль · кожа · мох</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 10 400 ₽</span>
+                    <span class="rating" data-rating-for="salt-leather"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=salt-leather">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="salt-leather" data-volume="50" data-price="10400">Заказать</button>
+                  </div>
+                </div>
+              </article>
 
-        <article class="product-card product-card--new">
-          <span class="product-card__badge product-card__badge--new">Новинка</span>
-          <img class="product-card__image" src="images/product-4.jpg" alt="Механическая клавиатура" width="400" height="300" loading="lazy">
-          <h3 class="product-card__title">Механическая клавиатура</h3>
-          <p class="product-card__description">Переключатели Red, RGB-подсветка, алюминиевый корпус.</p>
-          <p class="product-card__price">Цена: 6490 руб.</p>
-          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
-        </article>
+              <article class="product-card" data-perfume data-family="gourmand" data-intensity="rich" data-seasons="autumn winter" data-price="13900" data-title="Медленный вечер">
+                <a class="product-card__media" href="product.html?id=slow-evening" aria-label="Аромат «Медленный вечер»">
+                  <img src="images/perfume-5.jpg" alt="Аромат «Медленный вечер»" width="400" height="500" loading="lazy">
+                  <span class="badge bg-warning product-card__badge">Хит</span>
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Гурманские · насыщенная</p>
+                  <h2 class="product-card__title"><a href="product.html?id=slow-evening">Медленный вечер</a></h2>
+                  <p class="product-card__notes">Мёд · бензоин · сандал</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 13 900 ₽</span>
+                    <span class="rating" data-rating-for="slow-evening"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=slow-evening">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="slow-evening" data-volume="50" data-price="13900">Заказать</button>
+                  </div>
+                </div>
+              </article>
 
-        <article class="product-card product-card--discount">
-          <span class="product-card__badge product-card__badge--discount">Скидка</span>
-          <img class="product-card__image" src="images/product-5.jpg" alt="Игровая мышь" width="400" height="300" loading="lazy">
-          <h3 class="product-card__title">Игровая мышь</h3>
-          <p class="product-card__description">Сенсор 26000 DPI, 8 программируемых кнопок, RGB.</p>
-          <p class="product-card__price">Цена: 2990 руб.</p>
-          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
-        </article>
+              <article class="product-card" data-perfume data-family="citrus" data-intensity="light" data-seasons="winter spring" data-price="7900" data-title="Мандарин в снегу">
+                <a class="product-card__media" href="product.html?id=mandarin-snow" aria-label="Аромат «Мандарин в снегу»">
+                  <img src="images/perfume-6.jpg" alt="Аромат «Мандарин в снегу»" width="400" height="500" loading="lazy">
+                  <span class="badge bg-danger product-card__badge">Скидка</span>
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Цитрусовые · лёгкая</p>
+                  <h2 class="product-card__title"><a href="product.html?id=mandarin-snow">Мандарин в снегу</a></h2>
+                  <p class="product-card__notes">Мандарин · имбирь · мускус</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 7 900 ₽</span>
+                    <span class="rating" data-rating-for="mandarin-snow"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=mandarin-snow">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="mandarin-snow" data-volume="50" data-price="7900">Заказать</button>
+                  </div>
+                </div>
+              </article>
 
-        <article class="product-card">
-          <img class="product-card__image" src="images/product-6.jpg" alt="Внешний SSD-диск" width="400" height="300" loading="lazy">
-          <h3 class="product-card__title">Внешний SSD-диск</h3>
-          <p class="product-card__description">1 ТБ, USB 3.2, скорость чтения до 1050 МБ/с.</p>
-          <p class="product-card__price">Цена: 7990 руб.</p>
-          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
-        </article>
+              <article class="product-card" data-perfume data-family="floral" data-intensity="light" data-seasons="spring summer" data-price="8200" data-title="Пыльца">
+                <a class="product-card__media" href="product.html?id=pollen" aria-label="Аромат «Пыльца»">
+                  <img src="images/perfume-7.jpg" alt="Аромат «Пыльца»" width="400" height="500" loading="lazy">
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Цветочные · лёгкая</p>
+                  <h2 class="product-card__title"><a href="product.html?id=pollen">Пыльца</a></h2>
+                  <p class="product-card__notes">Ромашка · лаванда · сено</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 8 200 ₽</span>
+                    <span class="rating" data-rating-for="pollen"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=pollen">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="pollen" data-volume="50" data-price="8200">Заказать</button>
+                  </div>
+                </div>
+              </article>
 
+              <article class="product-card" data-perfume data-family="gourmand" data-intensity="rich" data-seasons="autumn winter" data-price="14900" data-title="Тёмный мёд">
+                <a class="product-card__media" href="product.html?id=dark-honey" aria-label="Аромат «Тёмный мёд»">
+                  <img src="images/perfume-8.jpg" alt="Аромат «Тёмный мёд»" width="400" height="500" loading="lazy">
+                  <span class="badge bg-warning product-card__badge">Хит</span>
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Гурманские · насыщенная</p>
+                  <h2 class="product-card__title"><a href="product.html?id=dark-honey">Тёмный мёд</a></h2>
+                  <p class="product-card__notes">Слива · мёд · пачули</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 14 900 ₽</span>
+                    <span class="rating" data-rating-for="dark-honey"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=dark-honey">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="dark-honey" data-volume="50" data-price="14900">Заказать</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="product-card" data-perfume data-family="woody" data-intensity="medium" data-seasons="spring summer autumn winter" data-price="9800" data-title="Тихая нота">
+                <a class="product-card__media" href="product.html?id=quiet-note" aria-label="Аромат «Тихая нота»">
+                  <img src="images/perfume-9.jpg" alt="Аромат «Тихая нота»" width="400" height="500" loading="lazy">
+                  <span class="badge bg-info product-card__badge">Фирменный</span>
+                </a>
+                <div class="product-card__body">
+                  <p class="product-card__family">Древесные · средняя</p>
+                  <h2 class="product-card__title"><a href="product.html?id=quiet-note">Тихая нота</a></h2>
+                  <p class="product-card__notes">Ирис · сандал · мускус</p>
+                  <div class="product-card__meta">
+                    <span class="product-card__price">от 9 800 ₽</span>
+                    <span class="rating" data-rating-for="quiet-note"></span>
+                  </div>
+                  <div class="product-card__actions">
+                    <a class="btn btn-outline-primary btn-sm" href="product.html?id=quiet-note">Подробнее</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-order-perfume="quiet-note" data-volume="50" data-price="9800">Заказать</button>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+
+            <div class="catalog-empty" id="catalogEmpty" hidden>
+              <h3>Ничего не нашлось</h3>
+              <p>Попробуйте изменить фильтры: возможно, подходящий аромат просто спрятался.</p>
+              <a class="btn btn-outline-primary" href="catalog.html">Сбросить фильтры</a>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
 
-  </section>
+    <section class="section section--soft">
+      <div class="container">
+        <div class="cta-band" data-reveal>
+          <span class="eyebrow" style="color:#e8c08a;">Не можете выбрать?</span>
+          <h2>Четыре вопроса — и мы подскажем</h2>
+          <p>Подбор занимает меньше минуты. Покажем основную рекомендацию и два альтернативных аромата, а потом предложим послушать их в бутике.</p>
+          <a class="btn btn-primary btn-lg" href="quiz.html">Пройти подбор</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
-    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="navbar-brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">ТН</span>
+            <span class="brand-text">
+              <span class="brand-name">Тихая нота</span>
+              <span class="brand-tagline">Парфюмерная мастерская</span>
+            </span>
+          </a>
+          <p>Авторские ароматы, мастер-классы и подарочные сертификаты. Москва, с 2022 года.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11l5 2 2 6 3-4 5 3 3-14Z"/><path d="m8 13 4 2"/></svg></a>
+            <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8c1 5 4 8 8 8h2v-4c2 2 3 3 5 4h3c-2-1-5-4-5-4s2-2 4-4h-3c-1 1-3 3-4 4V8H3Z"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.1-4.3A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.8 8.4c.3-.6.7-.6 1-.6h.4c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .6.5.9 1.2 1.6 2.1 2 .3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .3 0 1.1-.5 1.7-.5.6-1.3 1-2.1 1-1.7 0-4.1-1.4-5.5-3.6-.9-1.4-1.2-2.6-1.1-3.4 0-.4.1-.8.3-1.1Z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h2 class="footer-title">Разделы</h2>
+          <ul class="footer-nav">
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="quiz.html">Подбор аромата</a></li>
+            <li><a href="certificates.html">Сертификаты</a></li>
+            <li><a href="about.html">О мастерской</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Мастерская</h2>
+          <ul class="footer-nav">
+            <li><a href="order.html">Мастер-классы</a></li>
+            <li><a href="account.html">Личный кабинет</a></li>
+            <li><a href="certificates.html#faq">О сертификатах</a></li>
+            <li><a href="index.html#faqTitle">Доставка и оплата</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Контакты</h2>
+          <ul class="footer-contact">
+            <li><a href="tel:+74951204545">📞 +7 (495) 120-45-45</a><span>ежедневно, 11:00–22:00</span></li>
+            <li><a href="mailto:hello@quietnote.ru">📬 hello@quietnote.ru</a><span>ответим в течение дня</span></li>
+            <li>📍 Москва, ул. Покровка, 17<span>флагманский бутик</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Тихая нота. Все права защищены.</span>
+        <span>Москва · ежедневно 11:00–22:00</span>
+      </div>
+    </div>
   </footer>
 
-  <a href="#top" class="scroll-top" id="scroll-top" aria-label="Наверх">↑</a>
+  <nav class="mobile-nav" aria-label="Мобильная навигация">
+    <a href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z"/><path d="M9.5 20v-5h5v5"/></svg>
+      <span>Главная</span>
+    </a>
+    <a href="catalog.html" class="active" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7"/><rect x="13.5" y="3.5" width="7" height="7"/><rect x="3.5" y="13.5" width="7" height="7"/><rect x="13.5" y="13.5" width="7" height="7"/></svg>
+      <span>Каталог</span>
+    </a>
+    <a href="quiz.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.2 7.2l2.1 2.1M17.7 14.7l2.1 2.1M3 12h3M18 12h3M4.2 16.8l2.1-2.1M17.7 9.3l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>Подбор</span>
+    </a>
+    <a href="account.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5"/></svg>
+      <span>Кабинет</span>
+    </a>
+  </nav>
 
+  <button class="scroll-top" id="scrollTop" type="button" aria-label="Наверх">
+    <span class="scroll-top__icon" aria-hidden="true">🌸</span>
+  </button>
+
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="orderModalTitle">Оформление заказа</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <div id="orderProduct" class="order-product"></div>
+          <div class="success-message" id="orderSuccess">
+            Заказ <strong id="orderNumber"></strong> принят. Мы свяжемся с вами, чтобы подтвердить объём и доставку.
+            Следить за статусом можно в <a href="account.html">личном кабинете</a>.
+          </div>
+          <form id="orderForm" novalidate>
+            <input type="hidden" id="orderPerfumeId" name="perfume">
+            <input type="hidden" id="orderVolume" name="volume">
+            <input type="hidden" id="orderPrice" name="price">
+            <div class="mb-3">
+              <label class="form-label" for="orderName">Имя</label>
+              <input class="form-control" id="orderName" name="name" type="text" autocomplete="given-name" placeholder="Как к вам обращаться" required>
+              <div class="field-error" data-error-for="orderName"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="orderPhone">Телефон</label>
+              <input class="form-control" id="orderPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
+              <div class="field-error" data-error-for="orderPhone"></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label" for="orderComment">Комментарий</label>
+              <textarea class="form-control" id="orderComment" name="comment" rows="3" placeholder="Например, нужен пробник перед покупкой"></textarea>
+            </div>
+            <button class="btn btn-primary w-100" id="orderSubmit" type="submit">Подтвердить заказ</button>
+            <p class="summary-note">Оплата при получении или в бутике. Отправим подтверждение по телефону.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/ratings.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/filter.js"></script>
 </body>
-
 </html>

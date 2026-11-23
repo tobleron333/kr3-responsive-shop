@@ -1,167 +1,342 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="ru" data-bs-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Оформление заявки в учебном интернет-магазине.">
-  <title>Оформление заявки — Учебный интернет-магазин</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
+  <title>Мастер-классы — записаться | Тихая нота</title>
+  <meta name="description" content="Мастер-классы «Тихой ноты»: соберите свой аромат за 90 минут, парфюм для двоих или ароматическую свечу. Выберите дату и свободное время онлайн.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Учебный интернет-магазин">
-  <meta property="og:description" content="Учебный frontend-проект интернет-магазина.">
-  <meta property="og:image" content="https://tobleron333.github.io/kr1-html-css-shop/images/preview.jpg">
+  <meta property="og:title" content="Мастер-классы — Тихая нота">
+  <meta property="og:description" content="Соберите свой аромат за 90 минут в парфюмерной мастерской.">
+  <meta property="og:image" content="images/masterclass.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="theme-color" content="#f7f2e9">
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('tn_theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        }
+      } catch (error) { /* localStorage недоступен */ }
+    })();
+  </script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
 </head>
-
 <body>
 
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="index.html">Главная</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="catalog.html">Каталог</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="product.html">Карточка товара</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link site-nav__link--active" href="order.html">Заявка</a>
-          </li>
-          <li class="site-nav__item">
-            <a class="site-nav__link" href="contacts.html">Контакты</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Основная навигация">
+      <div class="container navbar-container">
+        <a class="navbar-brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">ТН</span>
+          <span class="brand-text">
+            <span class="brand-name">Тихая нота</span>
+            <span class="brand-tagline">Парфюмерная мастерская</span>
+          </span>
+        </a>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html">Каталог</a></li>
+            <li class="nav-item"><a class="nav-link" href="quiz.html">Подбор аромата</a></li>
+            <li class="nav-item"><a class="nav-link" href="certificates.html">Сертификаты</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="nav-actions">
+          <a class="nav-icon-link" href="account.html" aria-label="Личный кабинет" title="Личный кабинет">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 19c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5"></path></svg>
+          </a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false" title="Включить тёмную тему">
+            <span class="theme-toggle__icon theme-toggle__sun" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+            </span>
+            <span class="theme-toggle__icon theme-toggle__moon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"></path></svg>
+            </span>
+          </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon"><span class="menu-line"></span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main>
-    <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current"> / Оформление заявки</span>
-    </nav>
+  <main id="main">
+
+    <div class="page-top">
+      <div class="container">
+        <nav aria-label="Хлебные крошки">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Мастер-классы</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 
     <section class="section">
-      <h1>Оформление заявки</h1>
-      <p>
-        Заполните форму, чтобы оставить заявку. Мы свяжемся с вами
-        в указанное время.
-      </p>
-
-      <form class="order-form order-form--page" id="order-form" action="#" method="post" novalidate>
-        <input id="selected-product" name="selected-product" type="hidden">
-
-        <div class="order-form__field">
-          <label class="order-form__label" for="order-name">Имя</label>
-          <input
-            class="order-form__input"
-            id="order-name"
-            name="name"
-            type="text"
-            placeholder="Введите ваше имя"
-            minlength="2"
-            autocomplete="given-name"
-            required
-          >
+      <div class="container">
+        <div class="row align-items-end g-3 mb-4 mb-lg-5">
+          <div class="col-12 col-lg-7">
+            <span class="eyebrow">Мастерская</span>
+            <h1 class="section-title">Соберите аромат,<br>которого ещё нет</h1>
+          </div>
+          <div class="col-12 col-lg-5">
+            <p class="section-lead mb-0">Выберите программу, дату и свободное время. Всё остальное — работа парфюмера и вашей интуиции.</p>
+          </div>
         </div>
 
-        <div class="order-form__field">
-          <label class="order-form__label" for="order-email">E-mail</label>
-          <input
-            class="order-form__input"
-            id="order-email"
-            name="email"
-            type="email"
-            placeholder="example@mail.ru"
-            autocomplete="email"
-            required
-          >
-        </div>
+        <div class="booking-layout">
+          <div>
+            <form id="bookingForm" novalidate>
 
-        <div class="order-form__field">
-          <label class="order-form__label" for="order-phone">Телефон</label>
-          <input
-            class="order-form__input"
-            id="order-phone"
-            name="phone"
-            type="tel"
-            inputmode="tel"
-            placeholder="+7 (900) 000-00-00"
-            pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-            required
-          >
-          <small class="order-form__hint">Формат: +7 (900) 000-00-00</small>
-        </div>
+              <div class="booking-panel">
+                <h2 class="booking-panel__title"><span>01</span> Программа</h2>
+                <label class="form-label" for="bookingProgram">Мастер-класс</label>
+                <select class="form-select" id="bookingProgram" name="program">
+                  <option value="signature">Собери свой аромат — 4 500 ₽</option>
+                  <option value="duo">Парфюм для двоих — 3 900 ₽</option>
+                  <option value="candle">Ароматическая свеча — 3 200 ₽</option>
+                </select>
+                <p class="form-text mt-2" id="programPriceHint">4 500 ₽ за участника · 90 минут</p>
+                <div class="program-details" id="programDetails">
+                  <p>Знакомимся с нотами, собираем формулу под ваш характер и уходим с флаконом 30 мл собственного аромата.</p>
+                  <ul>
+                    <li>Консультация парфюмера</li>
+                    <li>Более 40 ингредиентов</li>
+                    <li>Флакон 30 мл с вашим именем</li>
+                  </ul>
+                </div>
+              </div>
 
-        <div class="order-form__field">
-          <label class="order-form__label" for="order-date">Дата связи</label>
-          <input
-            class="order-form__input"
-            id="order-date"
-            name="date"
-            type="date"
-          >
-        </div>
+              <div class="booking-panel">
+                <h2 class="booking-panel__title"><span>02</span> Дата и время</h2>
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="bookingDate">Дата</label>
+                    <input class="form-control" id="bookingDate" name="date" type="date" required>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="bookingParticipants">Участники</label>
+                    <select class="form-select" id="bookingParticipants" name="participants">
+                      <option value="1">1 участник</option>
+                    </select>
+                  </div>
+                </div>
 
-        <div class="order-form__field">
-          <label class="order-form__label" for="order-topic">Тема заявки</label>
-          <select class="order-form__input" id="order-topic" name="topic" required>
-            <option value="">Выберите тему</option>
-            <option value="product">Заказ товара</option>
-            <option value="consultation">Консультация</option>
-            <option value="delivery">Доставка</option>
-          </select>
-        </div>
+                <span class="form-label d-block">Свободное время</span>
+                <div class="slot-grid" id="bookingSlots" aria-live="polite">
+                  <p class="slots-empty">Выберите дату, чтобы увидеть свободные слоты.</p>
+                </div>
+                <p class="form-text mt-2">Время указано по Москве. Занятые слоты недоступны для выбора.</p>
+              </div>
 
-        <div class="order-form__field">
-          <label class="order-form__label" for="order-comment">Комментарий</label>
-          <textarea
-            class="order-form__input"
-            id="order-comment"
-            name="comment"
-            rows="4"
-            placeholder="Укажите дополнительную информацию"
-          ></textarea>
-        </div>
+              <div class="booking-panel">
+                <h2 class="booking-panel__title"><span>03</span> Контакты</h2>
+                <div class="row g-3">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="bookingName">Имя</label>
+                    <input class="form-control" id="bookingName" name="name" type="text" autocomplete="given-name" placeholder="Как к вам обращаться" required>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="bookingPhone">Телефон</label>
+                    <input class="form-control" id="bookingPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="bookingEmail">E-mail</label>
+                    <input class="form-control" id="bookingEmail" name="email" type="email" autocomplete="email" placeholder="example@mail.ru">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="bookingComment">Комментарий</label>
+                    <textarea class="form-control" id="bookingComment" name="comment" rows="3" placeholder="Аллергии, повод, пожелания по аромату"></textarea>
+                  </div>
+                </div>
 
-        <div class="order-form__field order-form__field--checkbox">
-          <label>
-            <input
-              class="order-form__checkbox"
-              id="order-agreement"
-              name="agreement"
-              type="checkbox"
-              required
-            >
-            Я согласен на обработку данных
-          </label>
-        </div>
+                <div class="form-check mt-3 mb-3">
+                  <input class="form-check-input" id="bookingAgree" name="agreement" type="checkbox" required>
+                  <label class="form-check-label" for="bookingAgree">Согласен на обработку персональных данных</label>
+                </div>
 
-        <div class="order-form__actions">
-          <button class="button button--primary" type="submit">Отправить заявку</button>
-        </div>
-      </form>
+                <div class="alert alert-danger" id="bookingError" hidden role="alert"></div>
 
-      <p class="success-message" id="success-message" hidden>
-        Форма успешно отправлена!
-      </p>
+                <button class="btn btn-primary btn-lg w-100" id="bookingSubmit" type="submit">Записаться</button>
+                <p class="summary-note text-center">Оплата на месте картой или наличными. Отменить запись можно в личном кабинете.</p>
+              </div>
+
+            </form>
+          </div>
+
+          <aside class="booking-summary" aria-labelledby="summaryTitle">
+            <h2 class="booking-summary__title" id="summaryTitle">Ваша запись</h2>
+            <ul class="summary-list">
+              <li><span>Программа</span><span id="summaryProgram">Собери свой аромат</span></li>
+              <li><span>Дата</span><span id="summaryDate">—</span></li>
+              <li><span>Время</span><span id="summaryTime">Не выбрано</span></li>
+              <li><span>Участники</span><span id="summaryParticipants">1 участник</span></li>
+            </ul>
+            <div class="summary-total">
+              <span>Итого</span>
+              <strong id="summaryTotal">4 500 ₽</strong>
+            </div>
+            <p class="summary-note">Материалы и флакон уже включены в стоимость. Если платите сертификатом — напишите об этом в комментарии.</p>
+            <hr class="divider my-3">
+            <ul class="summary-list mb-0">
+              <li><span>Длительность</span><span id="summaryDuration">90 минут</span></li>
+              <li><span>Место</span><span>Покровка, 17</span></li>
+              <li><span>Отмена</span><span>бесплатно за 24 часа</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
     </section>
+
+    <section class="section section--soft" aria-labelledby="howTitle">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Как это проходит</span>
+            <h2 class="section-title" id="howTitle">Три шага до своего аромата</h2>
+          </div>
+          <p class="section-lead mb-0">Опыт не нужен: парфюмер объясняет ноты и помогает с дозировками.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card" data-reveal>
+            <span class="step-card__num">01</span>
+            <h3>Знакомство</h3>
+            <p>Слушаем 5–7 ключевых нот и выбираем направление: свежее, тёплое, древесное или гурманское.</p>
+          </article>
+          <article class="step-card" data-reveal>
+            <span class="step-card__num">02</span>
+            <h3>Сборка</h3>
+            <p>Смешиваем ингредиенты по формуле. Парфюмер подсказывает, что усиливает шлейф, а что делает аромат тише.</p>
+          </article>
+          <article class="step-card" data-reveal>
+            <span class="step-card__num">03</span>
+            <h3>Флакон</h3>
+            <p>Переливаем композицию в флакон 30 мл, подписываем его вашим именем и записываем формулу, чтобы повторить.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
-    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="navbar-brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">ТН</span>
+            <span class="brand-text">
+              <span class="brand-name">Тихая нота</span>
+              <span class="brand-tagline">Парфюмерная мастерская</span>
+            </span>
+          </a>
+          <p>Авторские ароматы, мастер-классы и подарочные сертификаты. Москва, с 2022 года.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11l5 2 2 6 3-4 5 3 3-14Z"/><path d="m8 13 4 2"/></svg></a>
+            <a href="#" aria-label="VK"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8c1 5 4 8 8 8h2v-4c2 2 3 3 5 4h3c-2-1-5-4-5-4s2-2 4-4h-3c-1 1-3 3-4 4V8H3Z"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.1-4.3A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.8 8.4c.3-.6.7-.6 1-.6h.4c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .6.5.9 1.2 1.6 2.1 2 .3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .3 0 1.1-.5 1.7-.5.6-1.3 1-2.1 1-1.7 0-4.1-1.4-5.5-3.6-.9-1.4-1.2-2.6-1.1-3.4 0-.4.1-.8.3-1.1Z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h2 class="footer-title">Разделы</h2>
+          <ul class="footer-nav">
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="quiz.html">Подбор аромата</a></li>
+            <li><a href="certificates.html">Сертификаты</a></li>
+            <li><a href="about.html">О мастерской</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Мастерская</h2>
+          <ul class="footer-nav">
+            <li><a href="order.html">Мастер-классы</a></li>
+            <li><a href="account.html">Личный кабинет</a></li>
+            <li><a href="certificates.html#faq">О сертификатах</a></li>
+            <li><a href="index.html#faqTitle">Доставка и оплата</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Контакты</h2>
+          <ul class="footer-contact">
+            <li><a href="tel:+74951204545">📞 +7 (495) 120-45-45</a><span>ежедневно, 11:00–22:00</span></li>
+            <li><a href="mailto:hello@quietnote.ru">📬 hello@quietnote.ru</a><span>ответим в течение дня</span></li>
+            <li>📍 Москва, ул. Покровка, 17<span>флагманский бутик</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Тихая нота. Все права защищены.</span>
+        <span>Москва · ежедневно 11:00–22:00</span>
+      </div>
+    </div>
   </footer>
 
-  <a href="#top" class="scroll-top" id="scroll-top" aria-label="Наверх">↑</a>
-  
-</body>
+  <nav class="mobile-nav" aria-label="Мобильная навигация">
+    <a href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z"/><path d="M9.5 20v-5h5v5"/></svg>
+      <span>Главная</span>
+    </a>
+    <a href="catalog.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7"/><rect x="13.5" y="3.5" width="7" height="7"/><rect x="3.5" y="13.5" width="7" height="7"/><rect x="13.5" y="13.5" width="7" height="7"/></svg>
+      <span>Каталог</span>
+    </a>
+    <a href="quiz.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.2 7.2l2.1 2.1M17.7 14.7l2.1 2.1M3 12h3M18 12h3M4.2 16.8l2.1-2.1M17.7 9.3l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>Подбор</span>
+    </a>
+    <a href="account.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5"/></svg>
+      <span>Кабинет</span>
+    </a>
+  </nav>
 
+  <button class="scroll-top" id="scrollTop" type="button" aria-label="Наверх">
+    <span class="scroll-top__icon" aria-hidden="true">🌸</span>
+  </button>
+
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="bookingModalTitle">Запись оформлена</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <span class="eyebrow">Номер записи</span>
+          <p class="product-price mb-3"><span id="bookingCode">TN-0000</span></p>
+          <ul class="summary-list" id="bookingModalDetails"></ul>
+          <div class="summary-total">
+            <span>Итого</span>
+            <strong id="bookingModalTotal">4 500 ₽</strong>
+          </div>
+          <p class="summary-note mb-0">Запись сохранена в браузере и уже видна в личном кабинете. Если планы изменятся — отмените её там же.</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" href="account.html">Личный кабинет</a>
+          <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Понятно</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/booking.js"></script>
+</body>
 </html>
